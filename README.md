@@ -1,3 +1,7 @@
+Inventory Management System for Air Selangor Hackathon 2024.
+
+Note: Remember to add the 'unoptimized' prop if using the next/image component, in case it's ever pushed onto Vercel.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
