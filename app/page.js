@@ -1,14 +1,22 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBell } from '@fortawesome/free-solid-svg-icons'
-import MeterDemand from './MeterDemand'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+
+const DynamicMeterDemand = dynamic(() => import("./MeterDemand"), {
+  ssr: false,
+});
+
 export default function Home() {
   return (
     <main className="bg-white pl-56 text-black">
       {/* Header */}
       <header className="flex justify-end w-full h-16 shadow-md">
-        <FontAwesomeIcon icon={faBell} className="text-gray-500 w-4 inline mr-4"/>
+        <FontAwesomeIcon
+          icon={faBell}
+          className="text-gray-500 w-4 inline mr-4"
+        />
       </header>
-      { /* Financial Statistics */}
+      {/* Financial Statistics */}
       <div className="m-6 grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         <div className="p-4 rounded-lg shadow-lg">
           <h1 className="font">Budget</h1>
@@ -33,8 +41,8 @@ export default function Home() {
       </div>
       {/* Meter Demand Chart */}
       <div className="m-6">
-        <MeterDemand/>
+        <DynamicMeterDemand />
       </div>
     </main>
-  )
+  );
 }
