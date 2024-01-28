@@ -36,6 +36,7 @@ export default function MeterDemand() {
   useEffect(() => {
     setIsClient(typeof window !== "undefined");
   }, []);
+
   return (
     <div className="p-4 rounded-3xl shadow-2xl w-full">
       <h1 className="font-bold text-3xl m-4">Meter Demand</h1>
