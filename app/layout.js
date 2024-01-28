@@ -1,3 +1,4 @@
+"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +8,7 @@ import {
   faPersonRunning,
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
   return (
     <html lang="en">
       <body className={`bg-white text-white ${inter.className}`}>
@@ -32,16 +35,21 @@ export default function RootLayout({ children }) {
           </h1>
           <hr className="h-px my-4 border-0 bg-gray-700" />
           <div className="m-4 grid grid-cols-1 gap-2">
-            {navLinks.map((link, index) => {
+            {navLinks.map((link) => {
+              const isActive = pathname.startsWith(link.href);
               return (
                 <Link
-                  className="group px-4 py-2 rounded-md hover:bg-slate-800"
-                  key={index}
+                  className={`group px-4 py-2 rounded-md hover:bg-slate-800 ${
+                    isActive ? "bg-slate-800" : ""
+                  }`}
+                  key={link.name}
                   href={link.href}
                 >
                   <FontAwesomeIcon
                     icon={link.icon}
-                    className="group-hover:text-cyan-600 w-4 inline mr-4"
+                    className={`group-hover:text-cyan-600 w-4 inline mr-4 ${
+                      isActive ? "text-cyan-600" : ""
+                    }`}
                   />
                   <h2 className="font-bold inline">{link.name}</h2>
                 </Link>
