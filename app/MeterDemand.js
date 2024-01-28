@@ -32,7 +32,7 @@ export default function MeterDemand() {
 
   return (
     <div className="p-4 rounded-3xl shadow-2xl w-full">
-      <h1 className="font-bold">Meter Demand</h1>
+      <h1 className="font-bold text-3xl m-4">Meter Demand</h1>
       <Chart options={options} series={series} type="bar" width="100%" />
     </div>
   );
