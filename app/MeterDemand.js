@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import Chart from "react-apexcharts";
+import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 export default function MeterDemand() {
   const [options, setOptions] = useState({
@@ -30,12 +31,23 @@ export default function MeterDemand() {
     },
   ]);
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(typeof window !== "undefined");
+  }, []);
   return (
     <div className="p-4 rounded-3xl shadow-2xl w-full">
       <h1 className="font-bold text-3xl m-4">Meter Demand</h1>
-      {typeof window !== "undefined" ? (
-        <Chart options={options} series={series} type="bar" width="100%" />
-      ) : null}
+      {isClient && (
+        <Chart
+          options={options}
+          series={series}
+          type="bar"
+          width="100%"
+          height={700}
+        />
+      )}
     </div>
   );
 }
